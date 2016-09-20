@@ -2,9 +2,9 @@
   "name": "wardrobe-fairy",
   "version": "1.0.0",
   "description": "An app that chooses what outfit to wear.",
-  "main": "/api/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node /api/server.js"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
