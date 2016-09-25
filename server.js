@@ -26,8 +26,8 @@ app.use('/api', routes);
 
 //Connection to database
 var databaseUrl = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/wardrobe-fairy-db';
-mongoose.connect(databaseUrl);
 
+mongoose.connect(databaseUrl);
 //App will use secret created in config file
 app
   .use('/api/upload/single', expressJWT({secret: config.secret}));
@@ -77,4 +77,8 @@ app.post('/api/upload/single', upload.single('file'), function(req, res) {
 
 });
 
-app.listen(process.env.PORT || 3000)
+var port = process.env.PORT || 3000;
+
+app.listen(port, function () {
+    console.log('Example app listening on port: ' + port);
+});
