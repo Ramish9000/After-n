@@ -12,7 +12,8 @@ var config     		  = require('./api/config/config');
 var routes 			    = require('./api/config/routes');
 var User          	= require('./api/models/user');
 var app             = express();
-var secret          = process.env.WARDROBE_FAIRY_SECRET
+var secret          = process.env.WARDROBE_FAIRY_SECRET;
+var path            = require('path');
 
 
 app.use(morgan('dev'));
@@ -75,6 +76,14 @@ app.post('/api/upload/single', upload.single('file'), function(req, res) {
     });
   });
 
+});
+
+//serve frontend index.html and static js, css
+app.use(express.static(path.join(__dirname + '/frontend')));
+app.use('/bower_components', express.static(path.join(__dirname + '/bower_components')));
+
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname + '/frontend/index.html'));
 });
 
 var port = process.env.PORT || 3000;
